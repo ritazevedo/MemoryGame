@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emoji Memory Game</title>
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+
+    <div class="waviy">
+      <span style="--i: 1">M</span>
+      <span style="--i: 2">E</span>
+      <span style="--i: 3">M</span>
+      <span style="--i: 4">O</span>
+      <span style="--i: 5">R</span>
+      <span style="--i: 6">Y</span>
+      <span style="--i: 7">.</span>
+      <span style="--i: 8">G</span>
+      <span style="--i: 9">A</span>
+      <span style="--i: 10">M</span>
+      <span style="--i: 11">E</span> 
+    </div>
+
+    <section class="memory-game">
+      <div class="memory-card" data-framework="game">
+        <img class="front-face" src="img/game.png" alt="Game" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="game">
+        <img class="front-face" src="img/game.png" alt="Game" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="globe">
+        <img class="front-face" src="img/globe.png" alt="Globe" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="globe">
+        <img class="front-face" src="img/globe.png" alt="Globe" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="face">
+        <img class="front-face" src="img/melting-face.png" alt="Face" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="face">
+        <img class="front-face" src="img/melting-face.png" alt="Face" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="monkey">
+        <img class="front-face" src="img/monkey.png" alt="Monkey" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="monkey">
+        <img class="front-face" src="img/monkey.png" alt="Monkey" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="octopus">
+        <img class="front-face" src="img/octopus.webp" alt="Octupus" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="octopus">
+        <img class="front-face" src="img/octopus.webp" alt="Octupus" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="panda">
+        <img class="front-face" src="img/panda.png" alt="Panda" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="panda">
+        <img class="front-face" src="img/panda.png" alt="Panda" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="poo">
+        <img class="front-face" src="img/poo.webp" alt="Poo" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="poo">
+        <img class="front-face" src="img/poo.webp" alt="Poo" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="taco">
+        <img class="front-face" src="img/taco.png" alt="Taco" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="taco">
+        <img class="front-face" src="img/taco.png" alt="Taco" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="pizza">
+        <img class="front-face" src="img/pizza.png" alt="Pizza" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="pizza">
+        <img class="front-face" src="img/pizza.png" alt="Pizza" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="star">
+        <img class="front-face" src="img/star-struck.webp" alt="Star" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+
+      <div class="memory-card" data-framework="star">
+        <img class="front-face" src="img/star-struck.webp" alt="Star" />
+        <img class="back-face" src="img/squares.jpeg" alt="Memory Card" />
+      </div>
+    </section>
+
+    <div id="timerDisplay">01:00</div>
+
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.0.min.js"
+      integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery ||
+        document.write(
+          '<script src="js/vendor/jquery-3.4.0.min.js"><\/script>'
+        );
+    </script>
+    <script src="js/plugins.js"></script>
+
+    <script
+      data-main="js/app/scripts"
+      src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"
+    ></script>
+  </body>
+</html>
