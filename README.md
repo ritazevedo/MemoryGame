@@ -10,13 +10,13 @@ The objective of the **Memory Game** is to find all the matching pairs of emojis
 - Memory-matching gameplay with emojis
 - Timer starts when the first card is flipped
 - Utilizes jQuery and event handling for interactivity
+- Game restart button functionality is now available
 
 ## Known Issues
-The end-game section may have a few bugs that could affect the completion status. I'm working to resolve these issues for a smoother gaming experience.
+The end-game section may have a few bugs that could affect the completion status. There's a known issue with the timer not stopping when the player wins the game. Work is ongoing to resolve these issues and ensure a smoother gaming experience.
 
 ## Upcoming Features
 I'm working on improving the game with the following features:
-- Implementing a game restart button functionality
 - Adding a move counter to keep track of player movements
 - Introducing multiple difficulty levels to cater to different players
 

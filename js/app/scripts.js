@@ -2,6 +2,8 @@ var cards = $(".memory-card");
 
 let hasFlipped = false;
 let isFirstCardFlipped = false;
+let gameWon = false;
+let allCardsFlipped;
 
 let firstCard;
 let secondCard;
@@ -10,17 +12,18 @@ let lockBoard = false;
 
 let timer = 60;
 let interval;
-let timmerRunning = false;
+let timerRunning = false;
 
-cards.on("click", function() {
+
+cards.on("click", function () {
     flipCard.call(this);
 
     if (!isFirstCardFlipped) {
         isFirstCardFlipped = true;
         startTimer();
     }
-    
-    if (!timmerRunning && isFirstCardFlipped) {
+
+    if (!timerRunning && isFirstCardFlipped) {
         startTimer();
     }
 });
@@ -44,7 +47,7 @@ function flipCard() {
 
     secondCard = $(this);
 
-    if (!timmerRunning) {
+    if (!timerRunning) {
         startTimer();
     }
 
@@ -54,13 +57,25 @@ function flipCard() {
 function checkMatch() {
     firstCard.data("framework") === secondCard.data("framework") ? disableCards() : unflipCards();
 
-    let allCardsFlipped = $(".memory-card:not(.flip)").length === 0;
+    allCardsFlipped = $(".memory-card:not(.flip)").length === 0;
 
-    if (allCardsFlipped) {
+    if (allCardsFlipped && !gameWon) {
+        isFirstCardFlipped = false;
         stopTimer();
-        resetGame();
+        gameWon = true;
+        const message = "<div id='messageBox'>" +
+            "<div id='message'>Congratulations! You won the game!</div>" +
+            "<button id='restartButton'>Restart</button>" +
+            "</div>";
+        $(".memory-game").append(message);
+        $(".memory-card").off("click");
+        $("#restartButton").on("click", function () {
+            resetGame();
+        });
     }
+
 }
+
 
 function disableCards() {
     firstCard.off("click", flipCard);
@@ -84,27 +99,42 @@ function resetBoard() {
     [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {
+function shuffle() {
     cards.each(function () {
         let position = Math.floor(Math.random() * (cards.length));
         $(this).css("order", position);
     })
-})();
+};
+
+shuffle();
 
 function startTimer() {
-    timmerRunning = true;
+    timerRunning = true;
     interval = setInterval(function () {
         timer--;
         displayTimer();
         if (timer <= 0) {
             stopTimer();
+            if (!allCardsFlipped) {
+                console.log("here");
+                gameWon = false;
+                const message = "<div id='messageBox'>" +
+                    "<div id='message'>Oh no! Time's up...</div>" +
+                    "<button id='restartButton'>Restart</button>" +
+                    "</div>";
+                $(".memory-game").append(message);
+                cards.off("click");
+                $("#restartButton").on("click", function () {
+                    resetGame();
+                });
+            }
         }
     }, 1000);
 }
 
 function stopTimer() {
     clearInterval(interval);
-    timmerRunning = false;
+    timerRunning = false;
 }
 
 function resetTimer() {
@@ -129,5 +159,28 @@ function resetCards() {
 
 function resetGame() {
     resetCards();
+    shuffle();
     isFirstCardFlipped = false;
+    gameWon = false;
+    $("#messageBox").hide();
+    firstCard = undefined;
+    secondCard = undefined;
+    $("#restartButton").off("click");
+    cards.on("click", function () {
+        flipCard.call(this);
+
+        if (!isFirstCardFlipped) {
+            isFirstCardFlipped = true;
+            startTimer();
+        }
+
+        if (!timerRunning && isFirstCardFlipped) {
+            startTimer();
+        }
+
+        checkMatch();
+    });
+
+    stopTimer();
+    resetTimer();
 }
